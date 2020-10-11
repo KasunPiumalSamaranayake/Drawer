@@ -20,6 +20,8 @@ import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 
 const drawerWidth = 241;
 
+const Message = () => <div>Thi is the message page </div> ; 
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
@@ -67,12 +69,18 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {["Inbox", "Starred"].map((text, index) => (
-          <ListItem key={text} component={Link} to={"/" + text}>
+        {[{
+          icon:<InboxIcon />,
+          path:"Inbox"}, {
+            icon:<MailIcon/>,
+            path:"Starred"}, {
+              icon:<InboxIcon/>,
+              path:"Star"}].map((elm, index) => (
+          <ListItem key={elm.path} component={Link} to={"/" + elm.path}>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {elm.icon}
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={elm.path} />
           </ListItem>
         ))}
       </List>
@@ -135,9 +143,10 @@ function ResponsiveDrawer(props) {
           <div className={classes.toolbar} />
 
           <Switch>
-            <Route exact path="/" render={() => <div>Home Page</div>} />
+            <Route exact path="/"  render={() => <div>Home Page</div>} />
             <Route path="/Inbox" render={() => <div> Page inbox</div>} />
             <Route path="/Starred" render={() => <div>Page starred</div>} />
+            <Route path="/Star" render={Message} />
           </Switch>
         </main>
       </BrowserRouter>
