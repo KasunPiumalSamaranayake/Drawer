@@ -18,7 +18,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 
-const drawerWidth = 240;
+const drawerWidth = 241;
 
 const useStyles = makeStyles(theme => ({
   root: {
